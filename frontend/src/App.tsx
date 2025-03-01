@@ -1,3 +1,4 @@
+import './styles/globals.css'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Login from './pages/authentication/login';
 import Register from './pages/authentication/register';
@@ -15,11 +16,11 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
-        {/* Navigation Header */}
+        <div className="min-h-screen w-full bg-[#383434]">
+          {/* Navigation Header */}
 
 
-        {/* Routes */}
-        <div className="container mx-auto p-4">
+          {/* Routes */}
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
