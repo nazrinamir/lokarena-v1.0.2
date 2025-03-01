@@ -7,13 +7,27 @@ function Register() {
     const [currentStep, setCurrentStep] = useState(1)
     const navigate = useNavigate()
     const totalSteps = 2
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+
+    const handleAllChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(e.target.value)
+        setPassword(e.target.value)
+        setConfirmPassword(e.target.value)
+        setFullName(e.target.value)
+        setEmail(e.target.value)
+        setPhoneNumber(e.target.value)
+    }
 
     const handleNext = () => {
         if (currentStep < totalSteps) {
             setCurrentStep(prev => prev + 1)
         }
         else {
-            console.log('register')
             navigate('/')
         }
     }
@@ -51,21 +65,21 @@ function Register() {
                     {/* Form Fields */}
                     {currentStep === 1 ? (
                         <>
-                            <LabelField label="Username" placeholder="Please Enter Username" onChange={() => { }} />
-                            <LabelField label="Password" placeholder="Please Enter Password" onChange={() => { }} />
-                            <LabelField label="Confirm Password" placeholder="Please Enter Confirm Password" onChange={() => { }} />
+                            <LabelField type="text" label="Username" placeholder="Please Enter Username" value={username} onChange={handleAllChange} />
+                            <LabelField type="password" label="Password" placeholder="Please Enter Password" value={password} onChange={handleAllChange} />
+                            <LabelField type="password" label="Confirm Password" placeholder="Please Enter Confirm Password" value={confirmPassword} onChange={handleAllChange} />
                         </>
                     ) : (
 
                         <>
-                            <LabelField label="Full Name" placeholder="Please Enter Full Name" onChange={() => { }} />
-                            <LabelField label="Email" placeholder="Please Enter Email" onChange={() => { }} />
-                            <LabelField label="Phone Number" placeholder="Please Enter Phone Number" onChange={() => { }} />
+                            <LabelField type="text" label="Full Name" placeholder="Please Enter Full Name" value={fullName} onChange={handleAllChange} />
+                            <LabelField type="email" label="Email" placeholder="Please Enter Email" value={email} onChange={handleAllChange} />
+                            <LabelField type="tel" label="Phone Number" placeholder="Please Enter Phone Number" value={phoneNumber} onChange={handleAllChange} />
                         </>
                     )}
 
                     {/* Navigation Buttons */}
-                    <div className="mt-6 flex justify-end">
+                    <div className="mt-6 flex gap-2 justify-end">
                         {currentStep > 1 && (
                             <Button
                                 label="Back"
