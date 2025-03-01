@@ -3,7 +3,7 @@ import React from 'react'
 function pageNotFound() {
   return (
     <div>
-        <h1>Page Not Found</h1>
+        <div className='text-white text-5xl'>Page Not Found</div>
     </div>
   )
 }

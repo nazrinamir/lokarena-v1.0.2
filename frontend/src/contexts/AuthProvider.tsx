@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface AuthContextType {
-  user: any | null;
+  user: any;
   login: (userData: any) => void;
   logout: () => void;
   isAuthenticated: boolean;
@@ -12,14 +12,22 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<any | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check if user is logged in on component mount
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
+      try {
+        const userData = JSON.parse(storedUser);
+        setUser(userData);
+        setIsAuthenticated(true);
+      } catch (error) {
+        // Handle invalid stored data
+        localStorage.removeItem('user');
+      }
     }
+    setIsLoading(false);
   }, []);
 
   const login = (userData: any) => {
@@ -33,6 +41,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(false);
     localStorage.removeItem('user');
   };
+
+  // Don't render children until we've checked localStorage
+  if (isLoading) {
+    return null; // Or a loading spinner
+  }
 
   const value = {
     user,

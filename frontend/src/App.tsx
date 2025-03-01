@@ -22,19 +22,21 @@ function AppContent() {
   return (
     <div className="min-h-screen w-full flex bg-[#383434]">
       <Toast />
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<ProtectedRoute children={<Dashboard />} />} />
-        <Route path="/profileuser" element={<ProtectedRoute children={<ProfileUser />} />} />
-        <Route path="/select" element={<ProtectedRoute children={<ProfileSelection />} />} />
-        <Route path="/profileteam" element={<ProtectedRoute children={<ProfileTeam />} />} />
-        <Route path="/setting" element={<ProtectedRoute children={<Setting />} />} />
-        <Route path="/rateTeam" element={<ProtectedRoute children={<RateTeam />} />} />
-        <Route path="/ratePlace" element={<ProtectedRoute children={<RatePlace />} />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      {isAuthenticated && <Sidebar />}
+      <div className={`${isAuthenticated ? 'w-5/6' : 'w-5/6'} h-full`}>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<ProtectedRoute children={<Dashboard />} />} />
+          <Route path="/profileuser" element={<ProtectedRoute children={<ProfileUser />} />} />
+          <Route path="/select" element={<ProtectedRoute children={<ProfileSelection />} />} />
+          <Route path="/profileteam" element={<ProtectedRoute children={<ProfileTeam />} />} />
+          <Route path="/setting" element={<ProtectedRoute children={<Setting />} />} />
+          <Route path="/rateTeam" element={<ProtectedRoute children={<RateTeam />} />} />
+          <Route path="/ratePlace" element={<ProtectedRoute children={<RatePlace />} />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </div>
     </div>
   );
 }
