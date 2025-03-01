@@ -37,7 +37,7 @@ const Sidebar = () => {
     ]
 
     return (
-        <div className="w-1/6 h-100vh bg-[#292525] m-4 rounded-4xl p-4 shadow-lg">
+        <div className="fixed top-0 left-0 w-1/6 h-[98%] bg-[#292525] m-2 rounded-2xl p-4 shadow-lg overflow-y-auto">
             <div className='flex flex-col gap-4 h-full'>
                 <div onClick={() => navigate('/dashboard')} className=" hover:cursor-pointer text-2xl text-center font-bold text-[#d0ec44] p-5">
                     LOKARENA

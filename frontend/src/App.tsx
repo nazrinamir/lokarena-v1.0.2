@@ -20,10 +20,10 @@ function AppContent() {
   const { isAuthenticated } = useAuth();
   
   return (
-    <div className="min-h-screen w-full flex bg-[#383434]">
+    <div className=" relative min-h-screen w-full flex ">
       <Toast />
       {isAuthenticated && <Sidebar />}
-      <div className={`${isAuthenticated ? 'w-5/6' : 'w-5/6'} h-full`}>
+      <div className={`${isAuthenticated ? 'ml-auto w-5/6' : 'w-5/6'} h-full`}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />

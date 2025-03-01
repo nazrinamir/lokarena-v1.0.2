@@ -3,6 +3,7 @@ import Sidebar from '../components/sidebar'
 import { useAuth } from '../contexts/AuthProvider';
 import LabelValue from '../components/labelValue';
 import Card from '../components/card';
+import Table from '../components/table';
 
 function dashboard() {
     const { user } = useAuth();
@@ -75,9 +76,9 @@ function dashboard() {
                 </div>
                 <div className='flex flex-row gap-5 '>
                     <Card title='Upcoming Match'>
-                        <div>
-                            <div>
-                                
+                        <div className='h-screen flex flex-col justify-center items-center'>
+                            <div className='text-center text-2xl font-bold'>
+                                Arsenal FC
                             </div>
                         </div>
                     </Card>
@@ -89,11 +90,7 @@ function dashboard() {
                         </div>
                     </Card>
                     <Card title='Team History'>
-                        <div>
-                            <div>
-                                
-                            </div>
-                        </div>
+                        <Table />
                     </Card>
                 </div>
                 <div>part5</div>
